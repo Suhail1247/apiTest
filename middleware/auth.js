@@ -1,0 +1,20 @@
+// auth.js
+import Jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+
+export default async function Auth(req, res, next) {
+  try {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({ error: 'Authentication failed. Token missing.' });
+    }
+    const decodedToken = Jwt.verify(token.replace('Bearer ', ''), process.env.JWTS);
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+console.log('error')
+    res.status(401).json({ error: 'Authentication failed' });
+  }
+}
+
