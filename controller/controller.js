@@ -6,10 +6,10 @@ export async function fetchData(req, res) {
   console.log('connected to the erfgwdfgsd');
 
   try {
-    const {email,name} = req.body;
+    const {email} = req.body;
     if(!email){
       console.log('error api');
-      return res.status(200).send({
+      return res.status(400).send({
         error: true,
         message: "unsuccessfull"
       });
