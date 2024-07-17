@@ -10,7 +10,7 @@ export async function fetchData(req, res) {
     if(!email){
       console.log('error api');
       return res.status(200).send({
-        error: false,
+        error: true,
         message: "unsuccessfull"
       });
     }
